@@ -1,0 +1,81 @@
+-------------------------------------
+-- 创建登录界面的用户信息表
+create table t_usermess(
+	uno int(6),
+	uname varchar(10),    
+	upwd varchar(16)
+);
+
+-- 查看表的结构：查询表的字段
+desc t_usermess;
+
+-- 在创建的新数据库表中添加数据
+insert into t_usermess values (1,'root','root');
+insert into t_usermess values (2,'superroot','123456');
+insert into t_usermess values (3,'llhyyds','123456');
+
+-- 查看表的数据
+select * from t_usermess;
+
+
+
+
+-------------------------------------
+-- 创建主界面的货物信息表
+create table goods(
+	gno int(10) auto_increment primary key,
+	gname varchar(10), 
+	gprice decimal(6,2),
+	gcont int(6),
+	gdays int(4),
+	gform varchar(16),
+	genterdate date,
+	ghuman varchar(5)
+);
+
+-- 在创建的货物数据库表中添加数据
+insert into goods values (387,'可口可乐',3.50,1200,365,'可口可乐食品','2022-9-18','063');
+insert into goods values (343,'旺仔小饼干',9.50,1210,180,'旺仔食品','2022-9-18','063');
+insert into goods values (345,'子弟薯片',6.50,2120,365,'子弟食品','2022-9-18','063');
+insert into goods values (356,'天天花生',4.00,1220,365,'天天有限公司','2022-9-19','063');
+insert into goods values (374,'太太乐鸡精',8.99,400,365,'太太乐','2022-9-13','063');
+insert into goods values (375,'海天酱油',19.99,600,365,'海天集团','2022-9-14','063');
+insert into goods values (376,'康师傅方便面',3.50,4200,365,'康师傅食品','2022-5-21','063');
+insert into goods values (377,'金龙鱼油',82.98,520,180,'金龙鱼','2022-9-18','063');
+insert into goods values (385,'五粮液',499.98,110,750,'五粮液酒业','2022-9-13','063');
+insert into goods values (389,'大理V8',4.50,1500,365,'大理啤酒','2022-9-13','063');
+insert into goods values (390,'青岛啤酒',4.50,1600,365,'青岛啤酒企业','2022-9-18','032');
+insert into goods values (391,'东北大米',103.70,200,365,'万民乐集团','2022-9-18','032');
+insert into goods values (392,'炫迈口香糖',13.50,225,365,'炫迈SNS','2022-9-18','032');
+insert into goods values (393,'舒肤佳香皂',7.86,645,365,'舒肤佳集团','2022-9-17','031');
+insert into goods values (394,'欧莱雅洗面奶',43.50,145,365,'欧莱雅集团','2022-9-18','031');
+insert into goods values (395,'洁柔纸巾',23.50,4200,1000,'洁柔纸业','2022-9-17','013');
+insert into goods values (396,'晨光碳素笔',3.00,1888,800,'晨光','2022-9-17','013');
+insert into goods values (397,'孔庙祈福擦头',1.50,1200,1200,'孔庙祈福','2022-9-18','013');
+insert into goods values (398,'海飞丝',33.60,900,365,'海飞丝有限公司','2022-9-18','033');
+insert into goods values (399,'欧亚牛奶',55.55,188,90,'欧亚集团','2022-9-12','043');
+
+
+
+-- 查看表的数据
+select * from goods;
+
+
+-- 删除表
+drop table goods;
+
+
+-- 导出字段
+SELECT
+	COLUMN_NAME 列名,
+	COLUMN_TYPE 数据类型,
+	IS_NULLABLE 是否允许为空,
+	COLUMN_KEY 是否为主键,
+	COLUMN_COMMENT 备注 
+FROM
+	INFORMATION_SCHEMA.COLUMNS 
+	WHERE -- mytestdb为数据库名称，到时候只需要修改成你要导出表结构的数据库名称即可
+	table_schema = 'mytestdb' 
+	AND -- t_usermess为表名，到时候换成你要导出的表的名称即可
+-- 如果不写的话，默认会查询出所有表中的数据，这样可能就分不清到底哪些字段是哪张表中的了，所以还是建议写上要导出的表的名称
+	table_name = 't_usermess'
